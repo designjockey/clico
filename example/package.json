@@ -1,0 +1,10 @@
+{
+  "name": "clico-usage-example",
+  "version": "0.1.0",
+  "description": "This is a demonstration of clico",
+  "author": "Ritesh Manchanda <me@ritesh.it>",
+  "license": "MIT",
+  "clico": {
+    "templateDirectory": "templates"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "clico",
+  "version": "0.1.0",
+  "description": "CLI Code Orchestrator - Generate JS source code via CLI with pre-defined code templates",
+  "keywords": [
+    "clico",
+    "template",
+    "javascript",
+    "code",
+    "generator"
+  ],
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/designjockey/clico"
+  },
+  "author": "Ritesh Manchanda <me@ritesh.it>",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "^1.3.0",
+    "dot": "^1.1.2",
+    "inquirer": "^6.0.0",
+    "inquirer-fuzzy-path": "^1.0.0"
+  },
+  "bin": {
+    "clico": "index.js"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0"
+  }
+}

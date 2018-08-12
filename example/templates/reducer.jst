@@ -1,0 +1,11 @@
+module.exports = `export default function {{=clico.functionName}}(state = {}, action) {
+  switch (action.type) {
+    case '{{=clico.actionTypeName}}': {
+      /* Do something */
+    }
+    break;
+
+    default:
+      return state;
+  }
+};`
