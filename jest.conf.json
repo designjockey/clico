@@ -1,0 +1,6 @@
+{
+  "collectCoverageFrom": [
+    "src/**/*.js",
+    "!**/{node_modules,test,coverage}/**"
+  ]
+}

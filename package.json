@@ -1,6 +1,6 @@
 {
   "name": "clico",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CLI Code Orchestrator - Generate JS source code via CLI with pre-defined code templates",
   "keywords": [
     "clico",
@@ -13,6 +13,11 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/designjockey/clico"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --notify --watchAll",
+    "test:coverage": "jest --config jest.conf.json --coverage"
   },
   "author": "Ritesh Manchanda <me@ritesh.it>",
   "license": "MIT",
@@ -31,6 +36,7 @@
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.8.0",
-    "eslint-plugin-standard": "^3.1.0"
+    "eslint-plugin-standard": "^3.1.0",
+    "jest": "^23.5.0"
   }
 }

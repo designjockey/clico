@@ -1,4 +1,5 @@
 const dot = require('dot');
+const { templateDirectoryPath } = require('../config');
 
 dot.templateSettings = {
   interpolate: /\{\{=([\s\S]+?)\}\}/g,
@@ -16,7 +17,7 @@ const parseTemplateVariables = templateContent => {
 };
 
 const compileTemplate = (templateName, templateData) => {
-  const templateContent = require(`../templates/${templateName}`);
+  const templateContent = require(`${templateDirectoryPath}/${templateName}`);
   const templateFunction = dot.template(templateContent);
 
   return templateFunction(templateData);
