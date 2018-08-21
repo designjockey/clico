@@ -17,7 +17,8 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --notify --watchAll",
-    "test:coverage": "jest --config jest.conf.json --coverage"
+    "test:coverage": "jest --config jest.conf.json --coverage",
+    "test:codecov": "jest --config jest.conf.json --coverage && codecov"
   },
   "author": "Ritesh Manchanda <me@ritesh.it>",
   "license": "MIT",
@@ -31,6 +32,7 @@
     "clico": "index.js"
   },
   "devDependencies": {
+    "codecov": "^3.0.4",
     "eslint": "^4.19.1",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.12.0",
