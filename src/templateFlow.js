@@ -15,15 +15,12 @@ const handleFileWrite = (isNewFile, content) => {
   }
 };
 
-const executeFlow = templates => {
+const executeFlow = templates =>
   templateChoices(templates)
     .then(({ template }) => templateVariablePrompt(template))
-    .then(compiledTemplate => {
-      templateWriteToChoices().then(writeTo =>
-        handleFileWrite(writeTo === 'new', compiledTemplate)
-      );
-    });
-};
+    .then(compiledTemplate =>
+      templateWriteToChoices().then(writeTo => handleFileWrite(writeTo === 'new', compiledTemplate))
+    );
 
 module.exports = {
   executeFlow,
