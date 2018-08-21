@@ -1,4 +1,4 @@
-# CLICO
+# CLICO ![img](https://circleci.com/gh/designjockey/clico.svg?&style=shield&circle-token=7ceacdf6c6f80bb8a13ac67969327d474dfeec47)
 > CLI Code Orchestrator - Generate JS source code via CLI with pre-defined code templates
 
 CLICO is a CLI interface to provide users to generate JS code using snippets. This is useful when there is a need for eliminating boilerplate using standardized code format. The preset templates can be defined to accept variables and the consuming user is prompted to provide values for these variables, the template is then compiled and injected in a file selected by the user.
