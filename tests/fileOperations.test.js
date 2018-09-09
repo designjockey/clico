@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { appendToFile, getFileList } = require('../src/fileOperations');
+const { appendToFile, getFileList, readFile } = require('../src/fileOperations');
 
 jest.mock('fs');
 const mockAppendFile = error => {
@@ -9,6 +9,12 @@ const mockAppendFile = error => {
 const mockReadDir = error => {
   fs.readdir = jest.fn((...args) => args[1](error, ['file1.js', 'file2.jsx']));
 };
+
+const mockReadFile = error => {
+  fs.readFile = jest.fn((...args) => args[2](error, 'File contents'));
+};
+
+const errorMessage = 'some error message';
 
 describe('src/fileOperations', () => {
   afterEach(() => {
@@ -31,7 +37,7 @@ describe('src/fileOperations', () => {
     });
 
     test('unsuccessful save', () => {
-      mockAppendFile('some error message');
+      mockAppendFile(errorMessage);
 
       expect(() => {
         appendToFile('some/file/name.js', 'File contents');
@@ -52,10 +58,32 @@ describe('src/fileOperations', () => {
     });
 
     test('throws error', done => {
-      mockReadDir('some error message');
+      mockReadDir(errorMessage);
 
       getFileList('some/dir/path/').catch(error => {
-        expect(error).toBe('some error message');
+        expect(error).toBe(errorMessage);
+        done();
+      });
+    });
+  });
+
+  describe('#readFile', () => {
+    test('returns file content', done => {
+      mockReadFile();
+
+      readFile('myTemplateName.js')
+        .then(content => {
+          expect(content).toEqual('File contents');
+          done();
+        })
+        .catch(error => expect(error).toBeFalsy());
+    });
+
+    test('throws error', done => {
+      mockReadFile(errorMessage);
+
+      readFile('myTemplateName.js').catch(error => {
+        expect(error).toBe(errorMessage);
         done();
       });
     });
