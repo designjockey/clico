@@ -1,19 +1,23 @@
 const fs = require('fs');
-const { appendToFile, getFileList, readFile } = require('../src/fileOperations');
+const { appendToFile, getFileList, readFile, generateFile } = require('../src/fileOperations');
 
 jest.mock('fs');
+const mockCallbackWithError = error => jest.fn((...args) => args[2](error));
 const mockAppendFile = error => {
-  fs.appendFile = jest.fn((...args) => args[2](error));
+  fs.appendFile = mockCallbackWithError(error);
 };
-
 const mockReadDir = error => {
   fs.readdir = jest.fn((...args) => args[1](error, ['file1.js', 'file2.jsx']));
 };
-
 const mockReadFile = error => {
   fs.readFile = jest.fn((...args) => args[2](error, 'File contents'));
 };
-
+const mockOpen = error => {
+  fs.open = mockCallbackWithError(error);
+};
+const mockWriteFile = error => {
+  fs.writeFile = mockCallbackWithError(error);
+};
 const errorMessage = 'some error message';
 
 describe('src/fileOperations', () => {
@@ -86,6 +90,44 @@ describe('src/fileOperations', () => {
         expect(error).toBe(errorMessage);
         done();
       });
+    });
+  });
+
+  describe('#generateFile', () => {
+    test('creates and saves file', () => {
+      mockOpen();
+      mockWriteFile();
+      console.log = jest.fn();
+
+      generateFile('some/path/file.js', 'File contents');
+
+      expect(console.log).toHaveBeenCalledWith('File saved!');
+    });
+
+    test("throws when can't open file", () => {
+      mockOpen(errorMessage);
+
+      expect(() => generateFile('some/path/file.js', 'File contents')).toThrowError(
+        /^some error message$/
+      );
+    });
+
+    test('shows console error when file exists', () => {
+      mockOpen({ code: 'EEXIST' });
+      console.error = jest.fn();
+
+      generateFile('some/path/file.js', 'File contents');
+
+      expect(console.error).toHaveBeenCalledWith('some/path/file.js already exists');
+    });
+
+    test('throws when write fails', () => {
+      mockOpen();
+      mockWriteFile(errorMessage);
+
+      expect(() => generateFile('some/path/file.js', 'File contents')).toThrowError(
+        /^some error message$/
+      );
     });
   });
 });
