@@ -12,7 +12,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/designjockey/clico"
+    "url": "git+https://github.com/designjockey/clico.git"
   },
   "scripts": {
     "test": "jest",
@@ -40,5 +40,13 @@
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
     "jest": "^23.5.0"
+  },
+  "bugs": {
+    "url": "https://github.com/designjockey/clico/issues"
+  },
+  "homepage": "https://github.com/designjockey/clico#readme",
+  "directories": {
+    "example": "example",
+    "test": "tests"
   }
 }

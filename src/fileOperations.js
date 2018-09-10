@@ -28,7 +28,7 @@ const readFile = templateName => {
 };
 
 const generateFile = (filePathWithName, fileContent) => {
-  fs.open(filePathWithName, 'wx', (err, fd) => {
+  fs.open(filePathWithName, 'wx', err => {
     if (err) {
       if (err.code === 'EEXIST') {
         console.error(`${filePathWithName} already exists`);
